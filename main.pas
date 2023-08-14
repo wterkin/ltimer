@@ -24,34 +24,29 @@ type
 
   { TfmMain }
   TfmMain = class(TForm)
-    bbtReset: TBitBtn;
-    bbtSave: TBitBtn;
-    bbtStart: TBitBtn;
-    bbtStop: TBitBtn;
-    cbPresets: TComboBox;
-    edPresetName: TEdit;
-    meHour: TMemo;
-    meMin: TMemo;
-    meSec: TMemo;
-    Panel1: TPanel;
-    Panel3: TPanel;
-    Panel4: TPanel;
-    Panel5: TPanel;
-		ProgressBar: TProgressBar;
+				cbPresets : TComboBox;
+				meHour : TMemo;
+				meMin : TMemo;
+				meSec : TMemo;
+				Panel1 : TPanel;
+				ProgressBar : TProgressBar;
+				sbStart : TSpeedButton;
+				sbStop : TSpeedButton;
+				sbReset : TSpeedButton;
+				sbSave : TSpeedButton;
     STimer: TTimer;
     Timer: TTimer;
-    upHours: TUpDown;
-    upMin: TUpDown;
-    upSec: TUpDown;
-    procedure bbtResetClick(Sender: TObject);
-    procedure bbtSaveClick(Sender: TObject);
-    procedure bbtStartClick(Sender: TObject);
-    procedure bbtStopClick(Sender: TObject);
+		upHours : TUpDown;
+		upMin : TUpDown;
+		upSec : TUpDown;
     procedure cbPresetsSelect(Sender: TObject);
-    procedure edPresetNameChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
 		procedure formcreate({%H-}sender: tobject);
     procedure meHourChange(Sender: TObject);
+		procedure sbResetClick(Sender : TObject);
+		procedure sbSaveClick(Sender : TObject);
+		procedure sbStartClick(Sender : TObject);
+		procedure sbStopClick(Sender : TObject);
     procedure TimerTimer(Sender: TObject);
     //procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
@@ -67,11 +62,15 @@ type
   public
 
     { Public declarations }
+    procedure clickStart();
+    procedure clickReset();
+    procedure clickSave();
     procedure Start();
     procedure Stop();
     procedure Display();
     procedure Bell();
     procedure loadPresets();
+
   end;
 
 
@@ -94,75 +93,18 @@ begin
   upHours.Position:=moPresets[cbPresets.ItemIndex].miHours;
   upMin.Position:=moPresets[cbPresets.ItemIndex].miMinutes;
   upSec.Position:=moPresets[cbPresets.ItemIndex].miSeconds;
-  edPresetName.Text:=moPresets[cbPresets.ItemIndex].msName;
+  cbPresets.Text:=moPresets[cbPresets.ItemIndex].msName;
 end;
 
-
-procedure TfmMain.edPresetNameChange(Sender: TObject);
-begin
-
-  bbtSave.Enabled:=not isEmpty(edPresetName.Text);
-end;
-
-
-procedure TfmMain.bbtResetClick(Sender: TObject);
-begin
-
-  bbtStart.Enabled:=True;
-  bbtStop.Enabled:=False;
-  Timer.Enabled:=False;
-  upHours.Position:=0;
-  upMin.Position:=0;
-  upSec.Position:=0;
-  cbPresets.ItemIndex:=-1;
-  edPresetName.Text:='';
-  moProgressMgr.Reset();
-end;
+//procedure TfmMain.cbPresetsChange(Sender: TObject);
+//begin
+//
+//  bbtSave.Enabled:=not isEmpty(cbPresets.Text);
+//end;
 
 
-procedure TfmMain.bbtSaveClick(Sender: TObject);
-var lsPresetNumber : String;
-    lsPresetName   : String;
-    liExistPreset  : Integer;
-begin
 
-  liExistPreset:=cbPresets.Items.IndexOf(edPresetName.Text);
-  if liExistPreset>0 then
-  begin
-
-    lsPresetNumber:=IntToStr(liExistPreset+1);
-
-  end else
-  begin
-
-    inc(miPresetCount);
-  end;
-  lsPresetName := edPresetName.Text;
-  moIniMgr.write('presets', 'preset'+lsPresetNumber, lsPresetName);
-  moIniMgr.write('presets', 'count', miPresetCount);
-  moIniMgr.write(lsPresetName,'hours',upHours.Position);
-  moIniMgr.write(lsPresetName,'minutes',upMin.Position);
-  moIniMgr.write(lsPresetName,'seconds',upSec.Position);
-  loadPresets();
-end;
-
-
-procedure TfmMain.bbtStartClick(Sender: TObject);
-begin
-
-  //***** Если счетчики не нулевые..
-  if (upSec.Position>0) or
-     (upMin.Position>0) or
-     (upHours.Position>0) then begin
-
-    mlTotalCycles := (upHours.Position * 360) + (upMin.Position * 60) + upSec.Position;
-    moProgressMgr.setup(mlTotalCycles);
-    Start();
-  end;
-end;
-
-
-procedure TfmMain.bbtStopClick(Sender: TObject);
+procedure TfmMain.sbStopClick(Sender: TObject);
 begin
 
   Stop();
@@ -226,13 +168,70 @@ begin
 end;
 
 
+procedure TfmMain.clickStart;
+begin
+
+  //***** Если счетчики не нулевые..
+  if (upSec.Position>0) or
+     (upMin.Position>0) or
+     (upHours.Position>0) then begin
+
+    mlTotalCycles := (upHours.Position * 360) + (upMin.Position * 60) + upSec.Position;
+    moProgressMgr.setup(mlTotalCycles);
+    Start();
+  end;
+end;
+
+
+procedure TfmMain.clickReset;
+begin
+
+  sbStart.Enabled:=True;
+  sbStop.Enabled:=False;
+  Timer.Enabled:=False;
+  upHours.Position:=0;
+  upMin.Position:=0;
+  upSec.Position:=0;
+  cbPresets.ItemIndex:=-1;
+  cbPresets.Text:='';
+  moProgressMgr.Reset();
+end;
+
+
+procedure TfmMain.clickSave;
+var lsPresetNumber : String;
+    lsPresetName   : String;
+    liExistPreset  : Integer;
+begin
+
+  liExistPreset:=cbPresets.Items.IndexOf(cbPresets.Text);
+  if liExistPreset>0 then
+  begin
+
+    lsPresetNumber:=IntToStr(liExistPreset+1);
+
+  end else
+  begin
+
+    inc(miPresetCount);
+  end;
+  lsPresetName := cbPresets.Text;
+  moIniMgr.write('presets', 'preset'+lsPresetNumber, lsPresetName);
+  moIniMgr.write('presets', 'count', miPresetCount);
+  moIniMgr.write(lsPresetName,'hours',upHours.Position);
+  moIniMgr.write(lsPresetName,'minutes',upMin.Position);
+  moIniMgr.write(lsPresetName,'seconds',upSec.Position);
+  loadPresets();
+end;
+
+
 procedure TfmMain.Start;
 begin
 
   //***** Переходим в состояние "Таймер запущен"
-  bbtStart.Enabled:=False;
-  bbtReset.Enabled:=False;
-  bbtStop.Enabled:=True;
+  sbStart.Enabled:=False;
+  sbReset.Enabled:=False;
+  sbStop.Enabled:=True;
   Timer.Interval:=1000;
   Timer.Enabled:=True;
   mblRunning:=True;
@@ -243,9 +242,9 @@ procedure TfmMain.Stop;
 begin
 
   //***** Переходим в состояние "Таймер остановлен"
-  //bbtStart.Enabled:=True;
-  bbtReset.Enabled:=True;
-  bbtStop.Enabled:=False;
+  //sbStart.Enabled:=True;
+  sbReset.Enabled:=True;
+  sbStop.Enabled:=False;
   Timer.Enabled:=False;
   mblRunning:=False;
   moProgressMgr.Finish();
@@ -323,7 +322,7 @@ begin
 end; {- procedure TfMain.FormClose(Sender: TObject; var Action: TCloseAction); -}
 
 
-procedure TfmMain.FormCreate(sender: tobject);
+procedure TfmMain.formcreate(sender : tobject);
 begin
 
   inherited;
@@ -341,11 +340,33 @@ begin
   begin
 
     moProgressMgr.Reset();
-    bbtStart.Enabled:=(upHours.Position>0) or
+    sbStart.Enabled:=(upHours.Position>0) or
                       (upMin.Position>0) or
                       (upSec.Position>0);
   end;
 end;
 
 
+procedure TfmMain.sbResetClick(Sender : TObject);
+begin
+
+  clickReset();
+end;
+
+
+procedure TfmMain.sbSaveClick(Sender : TObject);
+begin
+
+  clickSave();
+end;
+
+
+procedure TfmMain.sbStartClick(Sender : TObject);
+begin
+
+  clickStart();
+end;
+
+
 end.
+
