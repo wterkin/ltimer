@@ -5,7 +5,7 @@ interface
 
 {$i profile.inc}
 uses
-  SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Windows,
   StdCtrls, ComCtrls, ExtCtrls, Buttons
   , tstr, tmsg, tapp, tini, tprogress
   ;
@@ -30,6 +30,7 @@ type
 				meSec : TMemo;
 				Panel1 : TPanel;
 				ProgressBar : TProgressBar;
+				sbExit : TSpeedButton;
 				sbStart : TSpeedButton;
 				sbStop : TSpeedButton;
 				sbReset : TSpeedButton;
@@ -42,7 +43,10 @@ type
     procedure cbPresetsSelect(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
 		procedure formcreate({%H-}sender: tobject);
+		procedure FormMouseDown(Sender : TObject; Button : TMouseButton;
+					Shift : TShiftState; X, Y : Integer);
     procedure meHourChange(Sender: TObject);
+		procedure sbExitClick(Sender : TObject);
 		procedure sbResetClick(Sender : TObject);
 		procedure sbSaveClick(Sender : TObject);
 		procedure sbStartClick(Sender : TObject);
@@ -62,6 +66,7 @@ type
   public
 
     { Public declarations }
+    procedure WMWINDOWPOSCHANGING(var Msg: TWMWINDOWPOSCHANGING); message WM_WINDOWPOSCHANGING;
     procedure clickStart();
     procedure clickReset();
     procedure clickSave();
@@ -232,6 +237,7 @@ begin
   sbStart.Enabled:=False;
   sbReset.Enabled:=False;
   sbStop.Enabled:=True;
+  sbExit.Enabled:=False;
   Timer.Interval:=1000;
   Timer.Enabled:=True;
   mblRunning:=True;
@@ -245,6 +251,7 @@ begin
   //sbStart.Enabled:=True;
   sbReset.Enabled:=True;
   sbStop.Enabled:=False;
+  sbExit.Enabled:=True;
   Timer.Enabled:=False;
   mblRunning:=False;
   moProgressMgr.Finish();
@@ -261,7 +268,6 @@ begin
     Application.ProcessMessages;
     Caption:=Format('%.2d:%.2d:%.2d',[upHours.Position,upMin.Position,upSec.Position]);
     Application.Title:=Caption;
-    //Caption:= IntToStr(ProgressBar.Position);
   end else begin
 
     Caption:='Остановлен';
@@ -330,6 +336,23 @@ begin
   moIniMgr := TEasyIniManager.Create();
   moIniMgr.read(fmMain);
   loadPresets();
+  sbStop.Enabled := False;
+  sbStart.Enabled := False;
+  sbSave.Enabled := False;
+end;
+
+
+procedure TfmMain.FormMouseDown(Sender : TObject; Button : TMouseButton;
+			Shift : TShiftState; X, Y : Integer);
+const SC_DRAGMOVE : Longint = $F013;
+begin
+
+  if Button <> mbRight then
+  begin
+
+    ReleaseCapture;
+    SendMessage(Handle, WM_SYSCOMMAND, SC_DRAGMOVE, 0);
+  end;
 end;
 
 
@@ -344,6 +367,13 @@ begin
                       (upMin.Position>0) or
                       (upSec.Position>0);
   end;
+end;
+
+
+procedure TfmMain.sbExitClick(Sender : TObject);
+begin
+
+  Close();
 end;
 
 
@@ -363,9 +393,49 @@ end;
 
 procedure TfmMain.sbStartClick(Sender : TObject);
 begin
-
   clickStart();
 end;
+
+
+procedure TfmMain.WMWINDOWPOSCHANGING(var Msg: TWMWINDOWPOSCHANGING);
+var WorkArea : TRect;
+    StickAt : Word;
+begin
+
+  StickAt := 6;
+  SystemParametersInfo(SPI_GETWORKAREA, 0, @WorkArea, 0);
+  with WorkArea, Msg.WindowPos^ do
+  begin
+
+    // Сдвигаем границы для сравнения с левой и верхней сторонами
+	  Right := Right - cx;
+	  Bottom := Bottom - cy;
+	  if abs(Left - x) <= StickAt then
+    begin
+
+	    x := Left;
+		end;
+		if abs(Right - x) <= StickAt then
+    begin
+
+	    x := Right;
+		end;
+		if abs(Top - y) <= StickAt then
+    begin
+
+	    y := Top;
+		end;
+		if abs(Bottom - y) <= StickAt then
+    begin
+
+	    y := Bottom;
+		end;
+	end;
+  inherited;
+end;
+
+
+end.
 
 
 end.
