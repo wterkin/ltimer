@@ -6,7 +6,7 @@ interface
 {$i profile.inc}
 uses
   SysUtils, Classes, Graphics, Controls, Forms, Dialogs, Windows,
-  StdCtrls, ComCtrls, ExtCtrls, Buttons
+  StdCtrls, ComCtrls, ExtCtrls, Buttons, ActnList
   , tstr, tmsg, tapp, tini, tprogress
   ;
 
@@ -24,11 +24,21 @@ type
 
   { TfmMain }
   TfmMain = class(TForm)
+				actCreate : TAction;
+				actExit : TAction;
+				actSave : TAction;
+				actStop : TAction;
+				actStart : TAction;
+				ActionList : TActionList;
+				Bevel1 : TBevel;
+				Bevel2 : TBevel;
 				cbPresets : TComboBox;
+				ImageList : TImageList;
 				meHour : TMemo;
 				meMin : TMemo;
 				meSec : TMemo;
 				Panel1 : TPanel;
+				Panel2 : TPanel;
 				ProgressBar : TProgressBar;
 				sbExit : TSpeedButton;
 				sbStart : TSpeedButton;
@@ -40,17 +50,18 @@ type
 		upHours : TUpDown;
 		upMin : TUpDown;
 		upSec : TUpDown;
+		procedure actCreateExecute(Sender : TObject);
+  procedure actExitExecute(Sender : TObject);
+		procedure actSaveExecute(Sender : TObject);
+		procedure actStartExecute(Sender : TObject);
+		procedure actStopExecute(Sender : TObject);
+		procedure cbPresetsChange(Sender : TObject);
     procedure cbPresetsSelect(Sender: TObject);
     procedure FormClose(Sender: TObject; var {%H-}CloseAction: TCloseAction);
 		procedure formcreate({%H-}sender: tobject);
 		procedure FormMouseDown(Sender : TObject; Button : TMouseButton;
-					Shift : TShiftState; X, Y : Integer);
+					{%H-}Shift : TShiftState; {%H-}X, {%H-}Y : Integer);
     procedure meHourChange(Sender: TObject);
-		procedure sbExitClick(Sender : TObject);
-		procedure sbResetClick(Sender : TObject);
-		procedure sbSaveClick(Sender : TObject);
-		procedure sbStartClick(Sender : TObject);
-		procedure sbStopClick(Sender : TObject);
     procedure TimerTimer(Sender: TObject);
     //procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
@@ -101,18 +112,46 @@ begin
   cbPresets.Text:=moPresets[cbPresets.ItemIndex].msName;
 end;
 
-//procedure TfmMain.cbPresetsChange(Sender: TObject);
-//begin
-//
-//  bbtSave.Enabled:=not isEmpty(cbPresets.Text);
-//end;
+
+procedure TfmMain.actExitExecute(Sender : TObject);
+begin
+
+  Close();
+end;
 
 
+procedure TfmMain.actCreateExecute(Sender : TObject);
+begin
 
-procedure TfmMain.sbStopClick(Sender: TObject);
+  clickReset();
+end;
+
+
+procedure TfmMain.actSaveExecute(Sender : TObject);
+begin
+
+  clickSave();
+end;
+
+
+procedure TfmMain.actStartExecute(Sender : TObject);
+begin
+
+  clickStart();
+end;
+
+
+procedure TfmMain.actStopExecute(Sender : TObject);
 begin
 
   Stop();
+end;
+
+
+procedure TfmMain.cbPresetsChange(Sender : TObject);
+begin
+
+  sbSave.Enabled:=not isEmpty(cbPresets.Text);
 end;
 
 
@@ -248,7 +287,6 @@ procedure TfmMain.Stop;
 begin
 
   //***** Переходим в состояние "Таймер остановлен"
-  //sbStart.Enabled:=True;
   sbReset.Enabled:=True;
   sbStop.Enabled:=False;
   sbExit.Enabled:=True;
@@ -273,7 +311,6 @@ begin
     Caption:='Остановлен';
     Application.Title:='ltimer';
   end;
-  //Application.ProcessMessages;
 end;
 
 
@@ -343,7 +380,7 @@ end;
 
 
 procedure TfmMain.FormMouseDown(Sender : TObject; Button : TMouseButton;
-			Shift : TShiftState; X, Y : Integer);
+		Shift : TShiftState; X, Y : Integer);
 const SC_DRAGMOVE : Longint = $F013;
 begin
 
@@ -367,33 +404,6 @@ begin
                       (upMin.Position>0) or
                       (upSec.Position>0);
   end;
-end;
-
-
-procedure TfmMain.sbExitClick(Sender : TObject);
-begin
-
-  Close();
-end;
-
-
-procedure TfmMain.sbResetClick(Sender : TObject);
-begin
-
-  clickReset();
-end;
-
-
-procedure TfmMain.sbSaveClick(Sender : TObject);
-begin
-
-  clickSave();
-end;
-
-
-procedure TfmMain.sbStartClick(Sender : TObject);
-begin
-  clickStart();
 end;
 
 
@@ -433,9 +443,6 @@ begin
 	end;
   inherited;
 end;
-
-
-end.
 
 
 end.

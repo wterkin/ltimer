@@ -11,7 +11,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="3"/>
         <CursorPos Y="18"/>
-        <UsageCount Value="35"/>
+        <UsageCount Value="37"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -21,10 +21,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="95"/>
-        <CursorPos X="23" Y="100"/>
-        <FoldState Value=" TCEF6 T3jP043 piZj80O6]9bjd0B7 PiTiQ0%"/>
-        <UsageCount Value="35"/>
+        <TopLine Value="142"/>
+        <CursorPos X="5" Y="154"/>
+        <FoldState Value=" TCEF6 T3kS0s6 pifkU0A6 PjEj70x"/>
+        <UsageCount Value="37"/>
         <Bookmarks Count="1">
           <Item0 X="29" ID="1"/>
         </Bookmarks>
@@ -67,9 +67,9 @@
       <Unit7>
         <Filename Value="..\tlib5\tini.pas"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="195"/>
-        <CursorPos X="55" Y="201"/>
-        <UsageCount Value="13"/>
+        <TopLine Value="222"/>
+        <CursorPos X="57" Y="231"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -77,7 +77,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="4"/>
         <CursorPos Y="22"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -85,7 +85,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="23"/>
         <CursorPos Y="39"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
@@ -93,7 +93,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="98"/>
         <CursorPos X="26" Y="120"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit10>
       <Unit11>
@@ -110,123 +110,122 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="130" Column="21" TopLine="109"/>
+        <Caret Line="125" Column="7" TopLine="113"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="294" Column="5" TopLine="290"/>
+        <Caret Line="126" Column="7" TopLine="114"/>
       </Position2>
       <Position3>
         <Filename Value="main.pas"/>
-        <Caret Line="305" Column="7" TopLine="289"/>
+        <Caret Line="133" Column="7" TopLine="116"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="306" Column="5" TopLine="289"/>
+        <Caret Line="123" Column="7" TopLine="116"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="307" Column="5" TopLine="289"/>
+        <Caret Line="130" Column="7" TopLine="118"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="402" Column="7" TopLine="385"/>
+        <Caret Line="116" TopLine="109"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="106" Column="48" TopLine="94"/>
+        <Caret Line="132" TopLine="118"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="8" Column="47"/>
+        <Caret Line="133" TopLine="119"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="110" TopLine="94"/>
+        <Caret Line="147" TopLine="126"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="125" TopLine="108"/>
+        <Caret Line="464" Column="19" TopLine="407"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="386" Column="28" TopLine="372"/>
+        <Caret Line="239" TopLine="140"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="111" TopLine="110"/>
+        <Caret Line="130" Column="62" TopLine="122"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="373" Column="33" TopLine="354"/>
+        <Caret Line="131" TopLine="114"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
-        <Caret Line="365" TopLine="352"/>
+        <Caret Line="410" Column="7" TopLine="407"/>
       </Position14>
       <Position15>
         <Filename Value="main.pas"/>
-        <Caret Line="43" TopLine="33"/>
+        <Caret Line="60" Column="20" TopLine="47"/>
       </Position15>
       <Position16>
         <Filename Value="main.pas"/>
-        <Caret Line="45" TopLine="40"/>
+        <Caret Line="369" TopLine="363"/>
       </Position16>
       <Position17>
         <Filename Value="main.pas"/>
-        <Caret Line="238" Column="7" TopLine="115"/>
+        <Caret Line="370" TopLine="363"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="368" TopLine="361"/>
+        <Filename Value="..\tlib5\tini.pas"/>
+        <Caret Line="217" TopLine="206"/>
       </Position18>
       <Position19>
-        <Filename Value="main.pas"/>
-        <Caret Line="332" Column="13" TopLine="332"/>
+        <Filename Value="..\tlib5\tini.pas"/>
+        <Caret Line="219" TopLine="206"/>
       </Position19>
       <Position20>
-        <Filename Value="main.pas"/>
-        <Caret Line="331" Column="13" TopLine="331"/>
+        <Filename Value="..\tlib5\tini.pas"/>
+        <Caret Line="222" TopLine="206"/>
       </Position20>
       <Position21>
-        <Filename Value="main.pas"/>
-        <Caret Line="265" Column="28" TopLine="247"/>
+        <Filename Value="..\tlib5\tini.pas"/>
+        <Caret Line="223" TopLine="206"/>
       </Position21>
       <Position22>
-        <Filename Value="main.pas"/>
-        <Caret Line="65" TopLine="50"/>
+        <Filename Value="..\tlib5\tini.pas"/>
+        <Caret Line="224" TopLine="206"/>
       </Position22>
       <Position23>
-        <Filename Value="main.pas"/>
-        <Caret Line="390" Column="18" TopLine="371"/>
+        <Filename Value="..\tlib5\tini.pas"/>
+        <Caret Line="225" TopLine="207"/>
       </Position23>
       <Position24>
         <Filename Value="main.pas"/>
-        <Caret Line="65" Column="44" TopLine="55"/>
+        <Caret Line="376" Column="30" TopLine="363"/>
       </Position24>
       <Position25>
         <Filename Value="main.pas"/>
-        <Caret Line="8" Column="66"/>
+        <Caret Line="144" Column="28" TopLine="135"/>
       </Position25>
       <Position26>
         <Filename Value="main.pas"/>
-        <Caret Line="346" Column="44" TopLine="339"/>
+        <Caret Line="310" Column="32" TopLine="223"/>
       </Position26>
       <Position27>
         <Filename Value="main.pas"/>
-        <Caret Line="395" TopLine="385"/>
       </Position27>
       <Position28>
         <Filename Value="main.pas"/>
-        <Caret Line="402" TopLine="392"/>
+        <Caret Line="47" Column="11" TopLine="28"/>
       </Position28>
       <Position29>
         <Filename Value="main.pas"/>
-        <Caret Line="370" Column="7" TopLine="354"/>
+        <Caret Line="373" Column="9" TopLine="299"/>
       </Position29>
       <Position30>
         <Filename Value="main.pas"/>
-        <Caret Line="441" Column="49" TopLine="379"/>
+        <Caret Line="143" TopLine="357"/>
       </Position30>
     </JumpHistory>
     <RunParams>
