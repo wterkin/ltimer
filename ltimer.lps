@@ -20,9 +20,8 @@
         <ComponentName Value="fmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="142"/>
-        <CursorPos X="5" Y="154"/>
+        <CursorPos X="52" Y="144"/>
         <FoldState Value=" TCEF6 T3kS0s6 pifkU0A6 PjEj70x"/>
         <UsageCount Value="37"/>
         <Bookmarks Count="1">
@@ -76,12 +75,13 @@
         <Filename Value="..\tlib5\tapp.pas"/>
         <EditorIndex Value="3"/>
         <TopLine Value="4"/>
-        <CursorPos Y="22"/>
+        <CursorPos X="7" Y="4"/>
         <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="..\tlib5\tmsg.pas"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="23"/>
         <CursorPos Y="39"/>
@@ -107,7 +107,7 @@
         <UsageCount Value="10"/>
       </Unit12>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="main.pas"/>
         <Caret Line="125" Column="7" TopLine="113"/>
@@ -223,10 +223,6 @@
         <Filename Value="main.pas"/>
         <Caret Line="373" Column="9" TopLine="299"/>
       </Position29>
-      <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="143" TopLine="357"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

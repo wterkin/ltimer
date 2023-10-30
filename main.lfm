@@ -212,7 +212,7 @@ object fmMain: TfmMain
       Height = 25
       Top = 2
       Width = 18
-      Color = 10313472
+      Color = 8996097
       ParentColor = False
       TabOrder = 8
       OnMouseDown = FormMouseDown
